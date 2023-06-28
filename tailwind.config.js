@@ -11,8 +11,9 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'image-numbers': 'url("/images/bg_numbers.svg")',
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-font-inter')],
 }
