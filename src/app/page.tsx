@@ -57,7 +57,7 @@ export default function Home() {
                                 responsive de la versión móvil.</p>
                         </div>
                         <div
-                            className="relative bottom-[3%] md:bottom-[-5%] lg:bottom-[-10%] xl:bottom-[-12%] 2xl:bottom-[-15%] -right-[5%] sm:-right-[25%] md:right-0 w-full h-full ">
+                            className="relative bottom-[3%] md:bottom-[-5%] lg:bottom-[-10%] xl:bottom-[-12%] -right-[5%] sm:-right-[25%] md:right-0 w-full h-full ">
                             <Image src="/images/hero1.svg" alt="Hero Image" fill style={{scale: "105%"}}/>
                         </div>
                     </div>
