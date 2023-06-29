@@ -78,10 +78,6 @@ export default function Navbar({navigation, current}: INavbarProps) {
                                     key={item.name}
                                     as="a"
                                     href={item.href}
-                                    // className={classNames(
-                                    //     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                    //     'block rounded-md px-3 py-2 text-base font-medium'
-                                    // )}
                                     className={classNames(
                                         current === item.href  ? 'text-[#2E53A3] font-bold' : 'text-black hover:text-gray-600',
                                         'block rounded-md px-3 py-2 text-base font-medium uppercase font-inter'
