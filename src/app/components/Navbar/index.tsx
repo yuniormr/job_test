@@ -1,21 +1,31 @@
 "use client"
-import { Disclosure } from '@headlessui/react'
+import {Disclosure} from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
 
-const navigation = [
-    { name: 'Inicio', href: '#', current: true },
-    { name: 'Servicios', href: '#', current: false },
-    { name: 'Nosotros', href: '#', current: false },
-    { name: 'Herramientas', href: '#', current: false },
-    { name: 'Socios', href: '#', current: false },
-]
+export interface INavbarItem {
+    name: string;
+    href: string;
+}
+
+export interface INavbarProps {
+    navigation: INavbarItem[];
+    current: string;
+}
+
+// const navigation = [
+//     { name: 'Inicio', href: '#', current: true },
+//     { name: 'Servicios', href: '#', current: false },
+//     { name: 'Nosotros', href: '#', current: false },
+//     { name: 'Herramientas', href: '#', current: false },
+//     { name: 'Socios', href: '#', current: false },
+// ]
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {
+export default function Navbar({navigation, current}: INavbarProps) {
     return (
         <Disclosure as="nav" className="bg-white rounded shadow w-[95%] m-auto left-[2%] fixed z-50">
             {({ open }) => (
@@ -24,7 +34,7 @@ export default function Navbar() {
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                                 {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:text-[#2E53A3] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -41,10 +51,10 @@ export default function Navbar() {
                                                 key={item.name}
                                                 href={item.href}
                                                 className={classNames(
-                                                    item.current ? 'text-[#2E53A3] font-bold' : 'text-black hover:text-gray-800',
+                                                    current === item.href ? 'text-[#2E53A3] font-bold' : 'text-black hover:text-gray-600',
                                                     'rounded-md px-0 lg:px-3 py-2 text-sm font-medium uppercase font-inter'
                                                 )}
-                                                aria-current={item.current ? 'page' : undefined}
+                                                aria-current={current === item.href ? 'page' : undefined}
                                             >
                                                 {item.name}
                                             </a>
@@ -68,11 +78,15 @@ export default function Navbar() {
                                     key={item.name}
                                     as="a"
                                     href={item.href}
+                                    // className={classNames(
+                                    //     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                    //     'block rounded-md px-3 py-2 text-base font-medium'
+                                    // )}
                                     className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block rounded-md px-3 py-2 text-base font-medium'
+                                        current === item.href  ? 'text-[#2E53A3] font-bold' : 'text-black hover:text-gray-600',
+                                        'block rounded-md px-3 py-2 text-base font-medium uppercase font-inter'
                                     )}
-                                    aria-current={item.current ? 'page' : undefined}
+                                    aria-current={current === item.href  ? 'page' : undefined}
                                 >
                                     {item.name}
                                 </Disclosure.Button>
