@@ -22,7 +22,7 @@ export default function Home() {
             let scrollY = window.scrollY;
             sections.forEach((current: any) => {
                 const sectionHeight = current.offsetHeight;
-                const sectionTop = (current.getBoundingClientRect().top + window.scrollY) - 120;
+                const sectionTop = (current.getBoundingClientRect().top + window.scrollY) - 50;
                 const sectionId = current.getAttribute("id");
                 if (
                     scrollY > sectionTop &&
@@ -65,16 +65,16 @@ export default function Home() {
 
             </header>
             <main className="container mx-auto p-4">
-                <section id="section_services" className="h-screen">
+                <section id="section_services" className="h-screen pt-[6.5rem]">
                     <h2 className="text-3xl font-bold font-sans">Servicios</h2>
                 </section>
-                <section id="section_about" className="h-screen">
+                <section id="section_about" className="h-screen pt-[6.5rem]">
                     <h2 className="text-3xl font-bold font-sans">Sobre Nosotros</h2>
                 </section>
-                <section id="section_tools" className="h-screen">
+                <section id="section_tools" className="h-screen pt-[6.5rem]">
                     <h2 className="text-3xl font-bold font-sans">Herramientas</h2>
                 </section>
-                <section id="section_partners" className="h-screen">
+                <section id="section_partners" className="h-screen pt-[6.5rem]">
                     <h2 className="text-3xl font-bold font-sans">Socios</h2>
                 </section>
             </main>
