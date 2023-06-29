@@ -27,7 +27,7 @@ function classNames(...classes: any) {
 
 export default function Navbar({navigation, current}: INavbarProps) {
     return (
-        <Disclosure as="nav" className={`${current === navigation[0].href ? "bg-white" : "bg-[#2E53A3]/30"} transition-colors rounded shadow w-[95%] m-auto left-[2%] fixed z-50 backdrop-blur-sm`}>
+        <Disclosure as="nav" className={`transition ease-in-out duration-500 ${current === navigation[0].href ? "bg-white" : "bg-[#2E53A3]/30"} transition-colors rounded shadow w-[95%] m-auto left-[2%] fixed z-50 backdrop-blur-sm`}>
             {({ open }) => (
                 <>
                     <div className="mx-auto px-2 sm:px-6 lg:px-8">
