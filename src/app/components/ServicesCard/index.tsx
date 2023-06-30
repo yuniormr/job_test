@@ -7,10 +7,11 @@ export interface IServiceCardProps {
     description: string;
     link: string;
     icon: React.ReactNode;
+
 }
 export const ServiceCard = ({title, description, link, icon}: IServiceCardProps) => {
     return (
-        <div className="h-[22rem] w-[17rem] text-[#0f0f0f] hover:text-white hover:bg-[#2E53A3] bg-white p-4 pt-6 shadow-2xl">
+        <div className="text-[#0f0f0f] hover:text-white hover:bg-[#2E53A3] bg-white p-1 sm:p-4 pt-6 shadow-lg mx-1 sm:mx-5 embla__slide">
             {icon}
             <h4 className="font-sans text-xl font-semibold text-inherit mt-3">{title}</h4>
             <p className="font-sans text-sm text-inherit mt-3">{description}</p>
