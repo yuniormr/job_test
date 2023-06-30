@@ -3,10 +3,8 @@ import Navbar from "@/app/components/Navbar";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
-import {CustomIconMobile} from "@/app/components/CustomIcons/CustomIconMobile";
-import {IServiceCardProps, ServiceCard} from "@/app/components/ServicesCard";
-import {CustomIconDataConfig} from "@/app/components/CustomIcons/CustomIconDataConfig";
-import {CustomIconConfig} from "@/app/components/CustomIcons/CustomIconConfig";
+import {IServiceCardProps} from "@/app/components/ServicesCard";
+import {EmblaCarousel} from "@/app/components/Carousel";
 
 
 const navigation = [
@@ -24,14 +22,7 @@ export default function Home() {
         setServices(data);
     });
 
-    interface IServiceIcon {
-        [x: string]: any;
-    }
-    const serviceIcon: IServiceIcon = {
-        mobile: <CustomIconMobile />,
-        data_config: <CustomIconDataConfig />,
-        config: <CustomIconConfig />
-    };
+
 
     useEffect(() => {
         const sections = document.querySelectorAll("section[id], header[id]");
@@ -84,8 +75,8 @@ export default function Home() {
             </header>
             <main className="container mx-auto p-4">
                 <section id="section_services" className="h-screen pt-[6.5rem]">
-                    <div className="flex w-full h-full">
-                        <div className="w-1/2">
+                    <div className="flex flex-col md:flex-row md:gap-x-8 w-full h-full">
+                        <div className="w-full md:w-1/2">
                             <h2 className="text-2xl font-bold font-sans text-[#3A67CC] uppercase">Servicios</h2>
                             <h4 className="text-3xl font-sans font-semibold mt-5">Esta info te llega desde un servicio
                                 externo</h4>
@@ -102,18 +93,8 @@ export default function Home() {
                                 </svg>
                             </button>
                         </div>
-                        <div className="w-1/2">
-                            {services?.map((item) => {
-                                return <ServiceCard
-                                    key={item.id}
-                                    id={item.id}
-                                    title={item.title}
-                                    description={item.description}
-                                    link={item.link}
-                                    //@ts-ignore
-                                    icon={serviceIcon[item.icon]}
-                                />
-                            })}
+                        <div className="w-full md:w-1/2 mt-24 md:mt-0">
+                            <EmblaCarousel items={services || []} />
                         </div>
                     </div>
                 </section>
