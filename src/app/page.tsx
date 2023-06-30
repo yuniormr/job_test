@@ -3,6 +3,10 @@ import Navbar from "@/app/components/Navbar";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
+import {CustomIconMobile} from "@/app/components/CustomIcons/CustomIconMobile";
+import {IServiceCardProps, ServiceCard} from "@/app/components/ServicesCard";
+import {CustomIconDataConfig} from "@/app/components/CustomIcons/CustomIconDataConfig";
+import {CustomIconConfig} from "@/app/components/CustomIcons/CustomIconConfig";
 
 
 const navigation = [
@@ -14,6 +18,20 @@ const navigation = [
 ]
 export default function Home() {
     const [current, setCurrent] = useState<string>("#section_home");
+    const [services, setServices] = useState<IServiceCardProps[]| null>(null);
+
+    getData().then((data)=>{
+        setServices(data);
+    });
+
+    interface IServiceIcon {
+        [x: string]: any;
+    }
+    const serviceIcon: IServiceIcon = {
+        mobile: <CustomIconMobile />,
+        data_config: <CustomIconDataConfig />,
+        config: <CustomIconConfig />
+    };
 
     useEffect(() => {
         const sections = document.querySelectorAll("section[id], header[id]");
@@ -27,8 +45,8 @@ export default function Home() {
                 if (
                     scrollY > sectionTop &&
                     scrollY <= sectionTop + sectionHeight
-                ){
-                    setCurrent("#"+sectionId);
+                ) {
+                    setCurrent("#" + sectionId);
                 }
             });
         }
@@ -66,7 +84,38 @@ export default function Home() {
             </header>
             <main className="container mx-auto p-4">
                 <section id="section_services" className="h-screen pt-[6.5rem]">
-                    <h2 className="text-3xl font-bold font-sans">Servicios</h2>
+                    <div className="flex w-full h-full">
+                        <div className="w-1/2">
+                            <h2 className="text-2xl font-bold font-sans text-[#3A67CC] uppercase">Servicios</h2>
+                            <h4 className="text-3xl font-sans font-semibold mt-5">Esta info te llega desde un servicio
+                                externo</h4>
+                            <p className="text-xl font-sans mt-5">Consultando el servicio en
+                                https://react-frontend.pages.dev/slides.json, debes usar Context para enviar los datos
+                                que necesitas en la sección de abajo. A la derecha tiene un slide o carrusel.</p>
+                            <button
+                                className=" flex items-center gap-2 bg-[#2D509E] text-2xl font-sans text-white font-semibold px-5 py-1 rounded-s-full rounded-e-full shadow shadow-blue-600 mt-6">
+                                Ver más
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="w-1/2">
+                            {services?.map((item) => {
+                                return <ServiceCard
+                                    key={item.id}
+                                    id={item.id}
+                                    title={item.title}
+                                    description={item.description}
+                                    link={item.link}
+                                    //@ts-ignore
+                                    icon={serviceIcon[item.icon]}
+                                />
+                            })}
+                        </div>
+                    </div>
                 </section>
                 <section id="section_about" className="h-screen pt-[6.5rem]">
                     <h2 className="text-3xl font-bold font-sans">Sobre Nosotros</h2>
@@ -81,3 +130,13 @@ export default function Home() {
         </>
     )
 }
+
+async function getData() {
+    const response = await fetch("https://react-frontend.pages.dev/slides.json");
+    return response.json();
+}
+
+
+
+
+
