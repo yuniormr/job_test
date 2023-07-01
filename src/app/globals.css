@@ -37,7 +37,7 @@
     padding: 0 3rem;
 }
 .embla__viewport {
-    width: 17rem;
+    width: 19rem;
     min-width: 10rem;
     margin: 0 auto;
     height: 23rem;
@@ -48,6 +48,7 @@
     flex: 0 0 100%;
     min-width: 10rem;
     max-width: 17rem;
+    margin: 0 2rem;
     /*min-height: 22rem;*/
     /*max-height: 22rem;*/
 }
