@@ -2,6 +2,7 @@
 import {Disclosure} from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
+import {PageButton} from "@/app/components/PageButton/PageButton";
 
 export interface INavbarItem {
     name: string;
@@ -63,9 +64,7 @@ export default function Navbar({navigation, current}: INavbarProps) {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button className="bg-[#2D509E] text-white font-semibold px-5 py-1 rounded-s-full rounded-e-full shadow shadow-blue-600 me-3 md:me-6">
-                                    Contactar
-                                </button>
+                                <PageButton value="Contactar" otherClasses="me-3 md:me-6" />
                                 <Image src="images/flags/es.svg" alt="Idioma Español"  width={27} height={18}/>
                             </div>
                         </div>
