@@ -1,6 +1,6 @@
 "use client"
 import Navbar from "@/app/components/Navbar";
-import styles from "./styles.module.css";
+import styles from "../styles.module.css";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
 import {IServiceCardProps} from "@/app/components/ServicesCard";
@@ -10,19 +10,22 @@ import useAppContext from "@/contexts/AppContext";
 import {PageButton} from "@/app/components/PageButton/PageButton";
 import {PageSectionTitle} from "@/app/components/PageSection/PageSectionTitle";
 import {PageSectionSubTitle} from "@/app/components/PageSection/PageSectionSubTitle";
+import {useTranslations} from 'next-intl';
 
 
 const navigation = [
-    {name: 'Inicio', href: '#section_home'},
-    {name: 'Servicios', href: '#section_services'},
-    {name: 'Nosotros', href: '#section_about'},
-    {name: 'Herramientas', href: '#section_tools'},
-    {name: 'Socios', href: '#section_partners'},
+    {name: 'Home', href: '#section_home'},
+    {name: 'Services', href: '#section_services'},
+    {name: 'About', href: '#section_about'},
+    {name: 'Tools', href: '#section_tools'},
+    {name: 'Partners', href: '#section_partners'},
 ]
 export default function Home() {
     const [current, setCurrent] = useState<string>("#section_home");
-    // const [services, setServices] = useState<IServiceCardProps[]| null>(null);
     const {services, setServices} = useAppContext();
+
+    const t = useTranslations('Main');
+
 
     useEffect(() => {
         getData().then((data) => {
@@ -69,7 +72,9 @@ export default function Home() {
                             <p className="text-white font-sans text-lg sm:text-xl md:text-sm lg:text-xl">Debes usar
                                 NextJS y Tailwind CSS . Cada sección de la página debe ser un componente individual. Usa
                                 el módulo next-intl para internacionalización. Usa la imaginación para desarrollar el
-                                responsive de la versión móvil.</p>
+                                responsive de la versión móvil.
+                            </p>
+
                         </div>
                         <div
                             className="relative bottom-[3%] md:bottom-[-5%] lg:bottom-[-10%] xl:bottom-[-12%] -right-[5%] sm:-right-[25%] md:right-0 w-full h-full ">
@@ -112,7 +117,7 @@ export default function Home() {
                         </div>
                         <div className="w-full md:w-1/2">
                             <PageSectionTitle title="Sobre Nosotros" otherClasses="text-end" />
-                            <PageSectionSubTitle subtitle="Traduce solo este título maravilloso y el navbar" otherClasses="text-end" />
+                            <PageSectionSubTitle subtitle={t("About.Subtitle")} otherClasses="text-end" />
                             <p className="text-xl font-sans text-end mt-5">Usted debe tener un sólido conocimiento de
                                 HTML y CSS. Debe comprender la arquitectura de componentes de React. Debe tener buena
                                 atención al detalle, organización del código, habilidades de comunicación efectiva y
