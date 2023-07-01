@@ -60,7 +60,7 @@ html {
 .embla__prev,.embla__next  {
     position: absolute;
     top: calc(50% - 2rem);
-    z-index: 9999;
+    z-index: 9;
     font-size: 4rem;
     font-weight: bolder;
     color: #2E53A3;
