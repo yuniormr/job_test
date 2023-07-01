@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import {Disclosure} from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from "next/image";
 import {PageButton} from "@/app/components/PageButton/PageButton";
+import LocaleSwitcher from "@/app/components/LocaleSwitcher";
+import {useTranslations} from "next-intl";
+import {useLocale} from "use-intl";
 
 export interface INavbarItem {
     name: string;
@@ -14,19 +16,14 @@ export interface INavbarProps {
     current: string;
 }
 
-// const navigation = [
-//     { name: 'Inicio', href: '#', current: true },
-//     { name: 'Servicios', href: '#', current: false },
-//     { name: 'Nosotros', href: '#', current: false },
-//     { name: 'Herramientas', href: '#', current: false },
-//     { name: 'Socios', href: '#', current: false },
-// ]
-
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar({navigation, current}: INavbarProps) {
+    const t = useTranslations('Navbar');
+    const locale = useLocale();
+    console.log("LOCALE: ", locale)
     return (
         <Disclosure as="nav" className={`transition ease-in-out duration-500 ${current === navigation[0].href ? "bg-white" : "bg-[#2E53A3]/30"} transition-colors rounded shadow w-[95%] m-auto left-[2%] fixed z-50 backdrop-blur-sm`}>
             {({ open }) => (
@@ -57,15 +54,15 @@ export default function Navbar({navigation, current}: INavbarProps) {
                                                 )}
                                                 aria-current={current === item.href ? 'page' : undefined}
                                             >
-                                                {item.name}
+                                                {t(item.name)}
                                             </a>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <PageButton value="Contactar" otherClasses="me-3 md:me-6" />
-                                <Image src="images/flags/es.svg" alt="Idioma Español"  width={27} height={18}/>
+                                <PageButton value={t("Contact")} otherClasses="me-3 md:me-6" />
+                                <LocaleSwitcher />
                             </div>
                         </div>
                     </div>
